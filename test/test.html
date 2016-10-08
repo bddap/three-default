@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<style media="screen">
+  html, body {margin: 0; height: 100%; overflow: hidden}
+</style>
+<body>
+  <script type="text/javascript">
+    nw.Window.get().showDevTools()
+    for (var n in document) {
+      console.log(n);
+    }
+    const stuff = require('../index.js')({parent:document.body})
+    stuff.addTestCube()
+  </script>
+</body>

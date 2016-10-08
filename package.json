@@ -1,0 +1,30 @@
+{
+  "name": "three-default-init",
+  "version": "0.0.0",
+  "description": "boilerplate for a typical threejs project",
+  "main": "index.js",
+  "scripts": {
+    "test": "nw test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bddap/threejs-default-init.git"
+  },
+  "keywords": [
+    "three",
+    "quick",
+    "default",
+    "scene",
+    "resize",
+    "camera"
+  ],
+  "author": "Andrew Dirksen",
+  "license": "ISC",
+  "peerDependencies": {
+    "three": "^0.81.2"
+  },
+  "devDependencies": {
+    "three": "^0.81.2",
+    "nw": "^0.17.6-sdk"
+  }
+}
