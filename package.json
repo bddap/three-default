@@ -1,5 +1,5 @@
 {
-  "name": "three-default-init",
+  "name": "three-default",
   "version": "0.0.0",
   "description": "boilerplate for a typical threejs project",
   "main": "index.js",
