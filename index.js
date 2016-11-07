@@ -7,13 +7,16 @@ module.exports = function(THREE, parent) {
   const renderer = new THREE.WebGLRenderer()
   parent.appendChild(renderer.domElement)
 
+  function fitParent() {
+    renderer.setSize(parent.clientWidth, parent.clientHeight)
+    camera.aspect = parent.clientWidth / parent.clientHeight
+    camera.updateProjectionMatrix()
+    renderer.render(scene, camera)
+  }
+
   function autoSize() {
-    window.addEventListener("resize", () => {
-      renderer.setSize(parent.clientWidth, parent.clientHeight)
-      camera.aspect = parent.clientWidth / parent.clientHeight
-      camera.updateProjectionMatrix()
-      renderer.render(scene, camera)
-    })
+    window.addEventListener("resize", fitParent)
+    fitParent()
   }
 
   function autoRender() {
