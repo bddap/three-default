@@ -4,11 +4,34 @@
 </style>
 <body>
   <script type="text/javascript">
-    nw.Window.get().showDevTools()
-    for (var n in document) {
-      console.log(n);
-    }
-    const stuff = require('../index.js')({parent:document.body})
-    stuff.addTestCube()
+
+    // "chromium-args": "--mixed-context" in package.json tells nw to run node
+    // modules in the browser context, thereby providing the correct window
+    // to modules.
+
+    const THREE = require('three')
+    const init = require('../index.js')
+
+    const {
+      scene,
+      camera,
+      renderer,
+      autoSize,  // function: fill parent, resize whenever necessary
+      autoRender // function: render forever
+    } = init(THREE)
+
+    autoSize()
+    autoRender()
+
+    // make box
+    scene.add(
+      new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshBasicMaterial({
+          color: 0xff7733,
+          wireframe: true
+    })))
+    camera.position.z = 2
+
   </script>
 </body>

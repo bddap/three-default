@@ -1,4 +1,5 @@
 {
   "name": "test",
-  "main": "test.html"
+  "main": "test.html",
+  "chromium-args": "--mixed-context"
 }

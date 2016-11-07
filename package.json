@@ -1,6 +1,6 @@
 {
   "name": "three-default",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "boilerplate for a typical threejs project",
   "main": "index.js",
   "scripts": {
@@ -16,13 +16,11 @@
     "default",
     "scene",
     "resize",
+    "autoresize",
     "camera"
   ],
   "author": "Andrew Dirksen",
   "license": "ISC",
-  "peerDependencies": {
-    "three": "^0.81.2"
-  },
   "devDependencies": {
     "three": "^0.81.2",
     "nw": "^0.17.6-sdk"

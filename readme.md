@@ -1,51 +1,48 @@
-
 # three-default
 
-Sets up a threejs scene with a camera and a renderer. Handles resizing. Lets you start your threejs project in a speedy manor.
+Sets up a threejs scene with a camera and a renderer. Handles resizing.
+Skip the normal three boilerplate.
 
 ## Usage:
 
 ```javascript
+const THREE = require('three')
 const init = require('three-default')
 
-const stuff = init({
-  parent: dom_node
-})
+const {
+  scene,
+  camera,
+  renderer,
+  autoSize,  // function: fill parent, resize whenever necessary
+  autoRender // function: render forever
+} = init(THREE)
+
+autoSize()
+autoRender()
+
+// Now add whatever you want to the scene
+scene.add(
+  new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({
+      color: 0xff7733,
+      wireframe: true
+})))
+camera.position.z = 2
 ```
-
-Parent defaults to `document.body`.
-
-## Examples:
 
 ```javascript
-const init = require('three-default')
-const {
-  three, // threejs module for convenience
-  renderer, // active threejs object
-  scene, // active threejs object
-  camera, // active threejs object
-  renderForever, // function: re render scene every frame
-  renderOnce, // function: render one frame
-  addTestCube // function: for debugging
-} = init()
-
-addTestCube()
+// parent defaults to document.body but it can be set explicitly
+init(THREE, document.body)
 ```
 
-Canvas will automatically resize to fill parent, so make sure to set parent size.
+### Try this if you want full screen:
 
 ```css
-/*Full screen example.*/
+/* css */
 html, body {
   margin: 0;
   height: 100%;
   overflow: hidden
 }
-```
-
-### Node Webkit example:
-
-```javascript
-// parent argument is required in nw
-init({parent: document.body}).addTestCube()
 ```

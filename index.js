@@ -1,43 +1,32 @@
+module.exports = function(THREE, parent) {
 
-const three = require('three')
+  parent = parent || document.body
 
-module.exports = function({parent = document.body}) {
-  const window = parent.ownerDocument.defaultView
+  const scene = new THREE.Scene()
+  const camera = new THREE.PerspectiveCamera(45, parent.clientWidth / parent.clientHeight, 1, 100000)
+  const renderer = new THREE.WebGLRenderer()
+  parent.appendChild(renderer.domElement)
 
-  const renderer = new three.WebGLRenderer()
-  const domme = renderer.domElement
-  parent.appendChild(domme)
-  const scene = new three.Scene()
-  const camera = new three.PerspectiveCamera(45, parent.clientWidth/parent.clientHeight, 1, 100000)
-
-  window.addEventListener("resize", fitToParent)
-  fitToParent()
-
-  function fitToParent () {
-    renderer.setSize(parent.clientWidth, parent.clientHeight)
-    camera.aspect = parent.clientWidth / parent.clientHeight
-    camera.updateProjectionMatrix()
-    renderOnce()
+  function autoSize() {
+    window.addEventListener("resize", () => {
+      renderer.setSize(parent.clientWidth, parent.clientHeight)
+      camera.aspect = parent.clientWidth / parent.clientHeight
+      camera.updateProjectionMatrix()
+      renderer.render(scene, camera)
+    })
   }
 
-  function addTestCube() {
-    const cube = new three.Mesh(
-      new three.BoxGeometry(1, 1, 1),
-      new three.MeshBasicMaterial({color: 0xff7733, wireframe: true})
-    )
-    cube.position.z = -2
-    scene.add(cube)
-    renderOnce()
-  }
-
-  function renderForever() {
-    window.requestAnimationFrame(renderForever)
-    renderOnce()
-  }
-
-  function renderOnce() {
+  function autoRender() {
+    window.requestAnimationFrame(autoRender)
     renderer.render(scene, camera)
   }
 
-  return {three, renderer, scene, camera, renderForever, renderOnce, addTestCube, fitToParent}
+  return {
+    scene,
+    camera,
+    renderer,
+    autoSize,
+    autoRender
+  }
+
 }
